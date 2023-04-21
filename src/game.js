@@ -42,8 +42,7 @@ const game = {
 
     start() {
         this.createBackground()
-        this.drawBackground()
-
+     
         setInterval(() => {
             this.clearAll()
             this.drawBackground()
@@ -52,8 +51,12 @@ const game = {
         }, 10)
     },
 
+    clearAll() {
+        this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
+    },
+
     createBackground() {
-        this.background = new Background(this.ctx, this.canvasSize.w, this.canvasSize.h)
+        this.background = new Background(this.ctx, this.canvasSize)
     },
 
     drawBackground() {
@@ -65,10 +68,6 @@ const game = {
     },
     drawBird() {
         this.bird?.draw()
-    },
-
-    clearAll() {
-        this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
     }
 
 }
