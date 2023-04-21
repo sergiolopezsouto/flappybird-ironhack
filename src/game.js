@@ -8,6 +8,7 @@ const game = {
         w: undefined,
         h: undefined
     },
+    background: undefined,
     bird: undefined,
     obstacles: [],
 
@@ -33,7 +34,6 @@ const game = {
                 if (this.bird === undefined){
                     this.createBird()
                 }  else {
-                    console.log("hola")
                     this.bird.jump()
                 }
             }  
@@ -41,11 +41,23 @@ const game = {
     },
 
     start() {
+        this.createBackground()
+        this.drawBackground()
+
         setInterval(() => {
             this.clearAll()
+            this.drawBackground()
             this.drawBird()
             // this.clearBalls()     // en nuestro caso lo que tendrá que limpiar son las pipelines y los powerups que van desapareciendo
         }, 10)
+    },
+
+    createBackground() {
+        this.background = new Background(this.ctx, this.canvasSize.w, this.canvasSize.h)
+    },
+
+    drawBackground() {
+        this.background.draw()
     },
 
     createBird() {
@@ -54,18 +66,9 @@ const game = {
     drawBird() {
         this.bird?.draw()
     },
+
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
-    },
-
-
-    // no nos hace falta en principio
-    drawAll() {
-        this.balls.forEach(elm => elm.draw())
-        console.log(this.balls.length)
-    },
-    clearBalls() {
-        this.balls = this.balls.filter(eachBall => eachBall.ballSpecs.pos.x > 0)
     }
 
 }
