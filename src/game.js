@@ -29,7 +29,14 @@ const game = {
     },
     setEventListeners() {
         document.onkeydown = ({ code }) => {
-        if (code === 'Space') this.createBird()
+            if (code === 'Space'){
+                if (this.bird === undefined){
+                    this.createBird()
+                }  else {
+                    console.log("hola")
+                    this.bird.jump()
+                }
+            }  
         }
     },
 
@@ -45,7 +52,7 @@ const game = {
         this.bird = new Bird(this.ctx, this.canvasSize)
     },
     drawBird() {
-        this.bird.draw()
+        this.bird?.draw()
     },
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
