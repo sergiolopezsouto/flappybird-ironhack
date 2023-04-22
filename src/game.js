@@ -13,6 +13,7 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
+    powerUps: [],
 
     init() {
         this.setContext()
@@ -59,7 +60,6 @@ const game = {
             this.createPipelines()
             this.clearPipelines()
 
-            // this.clearBalls()     // en nuestro caso lo que tendrá que limpiar son las pipelines y los powerups que van desapareciendo
         }, 10)
     },
 
