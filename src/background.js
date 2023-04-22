@@ -12,7 +12,7 @@ class Background {
 
     this.position = {x:0, y:0}
 
-    this.vel = 4;
+    this.vel = 2
   }
 
   draw() {
