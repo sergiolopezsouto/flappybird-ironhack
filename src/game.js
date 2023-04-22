@@ -96,7 +96,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPipelines() {
-        if (this.framesCounter % 300 === 0) {
+        if (this.framesCounter % 350 === 0) {
             this.pipelines.push(new Pipeline(this.ctx, this.canvasSize))
         }
     }, 
@@ -106,7 +106,7 @@ const game = {
     },
 
     clearPipelines() {
-        this.pipelines = this.pipelines.filter(pipe => pipe.pipelineSpecs.pos.x >= 0)
+        this.pipelines = this.pipelines.filter(pipe => pipe.pipelineSpecs.pos.x >= 0 - pipe.pipelineSpecs.size.width)
     },
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
