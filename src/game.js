@@ -14,6 +14,7 @@ const game = {
     bird: undefined,
     pipelines: [],
     mode: 'medium',
+    pipeFreq: 200,
     powerups: [],
     powerdowns: [],
 
@@ -54,7 +55,7 @@ const game = {
             this.clearAll()
             this.drawAll()
 
-
+            
             if (this.onGame && this.framesCounter > 5) {
                 this.drawPipelines()
                 this.createPipelines()
@@ -78,26 +79,22 @@ const game = {
             if (this.takePowerup()) {
                 if (this.mode === 'hard') {
                     this.mode = 'medium'
-                    // cambiar velocidad
-                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
+                    this.pipeFreq = 200
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'easy'
-                    // cambiar velocidad 
-                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
+                    this.pipeFreq = 250
                 }                
             }
 
             if (this.takePowerdown()) {
                 if (this.mode === 'easy') {
                     this.mode = 'medium'
-                    // cambiar velocidad                    
-                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
+                    this.pipeFreq = 200
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'hard'
-                    // cambiar velocidad 
-                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
+                    this.pipeFreq = 150
                 }                
             }
 
@@ -137,7 +134,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPipelines() {
-        if (this.framesCounter % 250 === 0) {
+        if (this.framesCounter % this.pipeFreq === 0) {
             this.pipelines.push(new Pipeline(this.ctx, this.canvasSize))
         }
     },
