@@ -13,13 +13,13 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
-    powerUps: [],
+    powerups: [],
+    powerdowns: [],
 
     init() {
         this.setContext()
         this.setDimensions()
         this.setEventListeners()
-        // this.createBird() 
         this.start()
     },
 
@@ -45,7 +45,6 @@ const game = {
 
         this.createBackground()
         this.createBird()
-        //  -> para que el pajaro cargue desde el principio deberiamos crearlo aqui 
 
         this.interval = setInterval(() => {
 
@@ -59,6 +58,15 @@ const game = {
                 this.drawPipelines()
                 this.createPipelines()
                 this.clearPipelines()
+                
+                this.drawPowerdowns()
+                this.createPowerdowns()
+                this.clearPowerdowns()
+                
+                this.drawPowerups()
+                this.createPowerups()
+                this.clearPowerups()                
+                
             }
 
             if (this.isCollision()){
@@ -66,13 +74,10 @@ const game = {
                 this.gameOver()
             } 
 
-            //Solo inicia las tuberias en el momento en el que tenemos el pajaro
-
-
         }, 10)
     },
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
@@ -83,7 +88,7 @@ const game = {
         this.drawBird()
     },
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createBackground() {
         this.background = new Background(this.ctx, this.canvasSize)
@@ -93,7 +98,7 @@ const game = {
         this.background.draw()
     },
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createBird() {
         this.bird = new Bird(this.ctx, this.canvasSize)
@@ -102,7 +107,7 @@ const game = {
         this.bird?.draw()
     },
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPipelines() {
         if (this.framesCounter % 250 === 0) {
@@ -118,7 +123,47 @@ const game = {
         this.pipelines = this.pipelines.filter(pipe => pipe.pipelineSpecs.pos.x >= 0 - pipe.pipelineSpecs.size.width)
     },
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+    createPowerups() {
+        if (this.framesCounter % 1600 === 0) {
+            this.powerups.push(new Powerup(this.ctx, this.canvasSize))
+        }
+    },
+
+    drawPowerups() {
+        this.powerups.forEach(powerup => powerup.draw())
+    },
+
+    clearPowerups() {
+        this.powerups = this.powerups.filter(powerup => powerup.powerupSpecs.pos.x >= 0 - powerup.powerupSpecs.size.width)
+    },
+
+    takePowerup() {
+
+    },
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+    createPowerdowns() {
+        if (this.framesCounter % 1300 === 0) {
+            this.powerdowns.push(new Powerdown(this.ctx, this.canvasSize))
+        }
+    },
+
+    drawPowerdowns() {
+        this.powerdowns.forEach(powerdown => powerdown.draw())
+    },
+
+    clearPowerdowns() {
+        this.powerdowns = this.powerdowns.filter(powerdown => powerdown.powerdownSpecs.pos.x >= 0 - powerdown.powerdownSpecs.size.width)
+    },
+
+    takePowerup() {
+
+    },
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     isCollision() {
 

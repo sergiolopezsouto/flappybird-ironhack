@@ -1,10 +1,10 @@
-class Powerup {
+class Powerdown {
 
     constructor(ctx, canvasSize) {
         this.ctx = ctx;
         this.canvasSize = canvasSize
 
-        this.powerupSpecs = {
+        this.powerdownSpecs = {
             size: { width: 50, height: 50 },
             pos: { x: this.canvasSize.w, y: this.randomAppearance() },
             vel: 1.5
@@ -17,14 +17,14 @@ class Powerup {
 
     draw() {
 
-        this.ctx.fillStyle = 'blue'
-        this.ctx.fillRect(this.powerupSpecs.pos.x, this.powerupSpecs.pos.y, this.powerupSpecs.size.width, this.powerupSpecs.size.height)
+        this.ctx.fillStyle = 'red'
+        this.ctx.fillRect(this.powerdownSpecs.pos.x, this.powerdownSpecs.pos.y, this.powerdownSpecs.size.width, this.powerdownSpecs.size.height)
         this.move()
 
     }
 
     move() {
-        this.powerupSpecs.pos.x -= this.powerupSpecs.vel
+        this.powerdownSpecs.pos.x -= this.powerdownSpecs.vel
     }
 
 }
