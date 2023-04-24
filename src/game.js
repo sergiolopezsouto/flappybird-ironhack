@@ -121,16 +121,20 @@ const game = {
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     isCollision() {
-        // colision con el techo
-        if (this.bird.birdSpecs.pos.y < 0) return true
+
         // colision con el suelo
         if (this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h > this.canvasSize.h) return true 
 
         return this.pipelines.some(pipeline => {
             return (
-                this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x 
-                // this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.pos.y && 
-                // this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.w
+
+                // condicion eje x
+                this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x && 
+                this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width &&
+
+                // condicion eje y (espacio entre tuberias)
+                (this.bird.birdSpecs.pos.y <= pipeline.pipelineSpecs.size.height || 
+                this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.size.height + pipeline.pipelineSpecs.spaceBetween)
             )
         })
 
