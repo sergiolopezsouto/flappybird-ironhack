@@ -13,6 +13,7 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
+    mode: 'medium',
     powerups: [],
     powerdowns: [],
 
@@ -74,6 +75,28 @@ const game = {
                 this.gameOver()
             } 
 
+            if (this.takePowerup()) {
+                if (this.mode === 'hard') {
+                    this.mode = 'medium'
+                    // cambiar velocidad
+                }                
+                if (this.mode === 'medium') {
+                    this.mode = 'easy'
+                    // cambiar velocidad 
+                }                
+            }
+            
+            if (this.takePowerdown()) {
+                if (this.mode === 'easy') {
+                    this.mode = 'medium'
+                    // cambiar velocidad                    
+                }                
+                if (this.mode === 'medium') {
+                    this.mode = 'hard'
+                    // cambiar velocidad 
+                }                
+            }
+
         }, 10)
     },
 
@@ -126,6 +149,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerups() {
+        // const freq = Math.random() * 3000 // para apariciones aleatorias de los powerups
         if (this.framesCounter % 1600 === 0) {
             this.powerups.push(new Powerup(this.ctx, this.canvasSize))
         }
@@ -140,6 +164,18 @@ const game = {
     },
 
     takePowerup() {
+        return this.powerups.some(powerup => {
+            return (
+
+                // condicion eje x
+                this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerup.powerupSpecs.pos.x && 
+                this.bird.birdSpecs.pos.x <= powerup.powerupSpecs.pos.x + powerup.powerupSpecs.size.width && 
+
+                // condicion eje y 
+                this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerup.powerupSpecs.pos.y && 
+                this.bird.birdSpecs.pos.y <= powerup.powerupSpecs.pos.y + powerup.powerupSpecs.size.height 
+            )
+        })
 
     },
 
@@ -159,8 +195,19 @@ const game = {
         this.powerdowns = this.powerdowns.filter(powerdown => powerdown.powerdownSpecs.pos.x >= 0 - powerdown.powerdownSpecs.size.width)
     },
 
-    takePowerup() {
+    takePowerdown() {
+        return this.powerdowns.some(powerdown => {
+            return (
 
+                // condicion eje x
+                this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
+                this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
+
+                // condicion eje y 
+                this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
+                this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
+            )
+        })
     },
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -184,6 +231,12 @@ const game = {
         })
 
     },
+
+   
+    
+
+    
+    
 
     gameOver() {
         clearInterval(this.interval)
