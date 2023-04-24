@@ -6,17 +6,17 @@ class Bird {
 
         this.imageInstance = undefined
         this.birdSpecs = {
-            pos: { x: this.canvasSize.w/5, y: this.canvasSize.h/2 },
+            pos: { x: this.canvasSize.w / 5, y: this.canvasSize.h / 2 },
             size: { w: 100, h: 75 },
-            vel: { x: 2, y: 3 } 
+            vel: { x: 2, y: 10 }
         }
-        this.gravity = 1.4;
+        this.gravity = 2;
 
 
         this.init()
-        
+
     }
-    
+
 
     init() {
         this.imageInstance = new Image()
@@ -24,9 +24,6 @@ class Bird {
     }
 
     draw() {
-
-        this.move()
-
         this.ctx.drawImage(
             this.imageInstance,
             this.birdSpecs.pos.x,
@@ -34,12 +31,15 @@ class Bird {
             this.birdSpecs.size.w,
             this.birdSpecs.size.h
         )
+        game.onGame ? this.move() : null // comprueba que el juego esta en marcha para que el pajaro 
+        // tenga gravedad
     }
 
-    jump() {
+    jump() {
         // this.turnVertical()
-        this.birdSpecs.pos.y -= 60
-        this.birdSpecs.vel.y -= 50
+        this.birdSpecs.pos.y -= 80
+        this.birdSpecs.vel.y -= 70        // 60,50
+
     }
 
     move() {

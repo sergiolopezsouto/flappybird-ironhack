@@ -1,4 +1,65 @@
 body {
     padding: 0;
     margin: 0;
+    display: flex;
+    box-sizing: border-box;
+    font-family: 'Vina Sans', cursive;
 }
+
+
+
+.container {
+    width: 100%;
+    border: 5px solid black;
+    text-align: center;
+    background-image: url(../images/drills.jpg);
+    background-size: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 4.5em;
+    -webkit-text-stroke: 2px lightblue;
+    color: white;
+    margin: 30px auto;
+
+
+}
+
+h2 {
+    font-size: 3em;
+    -webkit-text-stroke: 2px black;
+    color: white;
+    margin: 0 auto;
+
+    animation-name: parpadeo;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+
+
+
+
+
+@keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.0;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
+}
+
+
+
+
+footer {}
