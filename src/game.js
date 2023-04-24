@@ -79,21 +79,25 @@ const game = {
                 if (this.mode === 'hard') {
                     this.mode = 'medium'
                     // cambiar velocidad
+                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'easy'
                     // cambiar velocidad 
+                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
                 }                
             }
-            
+
             if (this.takePowerdown()) {
                 if (this.mode === 'easy') {
                     this.mode = 'medium'
                     // cambiar velocidad                    
+                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'hard'
                     // cambiar velocidad 
+                    this.pipelines.forEach (p => p.pipelineSpecs.vel = 5)
                 }                
             }
 
