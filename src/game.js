@@ -47,7 +47,7 @@ const game = {
         this.createBird()
         //  -> para que el pajaro cargue desde el principio deberiamos crearlo aqui 
 
-        setInterval(() => {
+        this.interval = setInterval(() => {
 
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
 
@@ -59,8 +59,13 @@ const game = {
                 this.drawPipelines()
                 this.createPipelines()
                 this.clearPipelines()
-
             }
+
+            if (this.isCollision()){
+                console.log(this.framesCounter)
+                this.gameOver()
+            } 
+
             //Solo inicia las tuberias en el momento en el que tenemos el pajaro
 
 
@@ -115,17 +120,21 @@ const game = {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    // isCollision() {
-    //     return this.pipelines.some(pipeline => {
-    //         return (
-    //             this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x &&
-    //             this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.pos.y &&
-    //             this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.w
-    //         )
+    isCollision() {
+        // colision con el techo
+        if (this.bird.birdSpecs.pos.y < 0) return true
+        // colision con el suelo
+        if (this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h > this.canvasSize.h) return true 
 
-    //     })
+        return this.pipelines.some(pipeline => {
+            return (
+                this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x 
+                // this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.pos.y && 
+                // this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.w
+            )
+        })
 
-    // },
+    },
 
     gameOver() {
         clearInterval(this.interval)

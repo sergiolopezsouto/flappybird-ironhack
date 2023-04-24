@@ -56,7 +56,6 @@ class Bird {
         this.birdSpecs.pos.y += this.birdSpecs.vel.y;
         this.birdSpecs.vel.y = this.gravity;
 
-
         if (this.birdSpecs.pos.y >= this.canvasSize.h - this.birdSpecs.size.h) this.turnVertical()
         // if (this.birdSpecs.pos.x >= this.canvasSize.w - this.birdSpecs.size.w) this.turnHorizontal() 
 
