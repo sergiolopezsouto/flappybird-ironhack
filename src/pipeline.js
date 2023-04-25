@@ -6,13 +6,13 @@ class Pipeline {
 
         this.pipelineSpecs = {
             spaceBetween: 400,
-            size: { width: this.canvasSize.w / 10, height: this.randomHeigth() },
+            size: { width: this.canvasSize.w / 10, height: this.randomHeight() },
             pos: { x: this.canvasSize.w, y: this.canvasSize.h - 200 },
             vel: 2.5
         }
     }
 
-    randomHeigth() {
+    randomHeight() {
         return Math.random() * 500 + 50
     }
 

@@ -12,7 +12,6 @@ class Bird {
         }
         this.gravity = 2;
 
-
         this.init()
 
     }
@@ -31,6 +30,7 @@ class Bird {
             this.birdSpecs.size.w,
             this.birdSpecs.size.h
         )
+
         game.onGame ? this.move() : null // comprueba que el juego esta en marcha para que el pajaro 
         // tenga gravedad
     }
