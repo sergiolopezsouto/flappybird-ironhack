@@ -31,19 +31,18 @@ class Bird {
             this.birdSpecs.size.h
         )
 
-        game.onGame ? this.move() : null // comprueba que el juego esta en marcha para que el pajaro 
-        // tenga gravedad
+        game.onGame ? this.move() : null // comprueba que el juego esta en marcha para que el pajaro tenga gravedad
+
     }
 
     jump() {
         // this.turnVertical()
         this.birdSpecs.pos.y -= 80
-        this.birdSpecs.vel.y -= 70        // 60,50
+        this.birdSpecs.vel.y -= 70 
 
     }
 
     move() {
-
         /*
         if (this.posY < this.posY0) {   // Está saltando!
         this.posY += this.velY;
@@ -64,15 +63,9 @@ class Bird {
         this.birdSpecs.pos.y += this.birdSpecs.vel.y
     }
 
-
     // tampoco nos hace falta (lo dejamos para que el pajaro no se vaya mientras hacemos pruebas)
     turnVertical() {
         this.birdSpecs.vel.y *= -1
     }
-
-    // el rebote horizontal no nos hace falta
-    // turnHorizontal() {
-    //     this.birdSpecs.vel.x *= -1
-    // }
 
 }

@@ -16,8 +16,8 @@ class Background {
   }
 
   draw() {
-    this.ctx.drawImage(this.image, this.position.x, this.position.y, this.canvasSize.w, this.canvasSize.h);
-    this.ctx.drawImage(this.image, this.position.x + this.canvasSize.w, this.position.y, this.canvasSize.w, this.canvasSize.h);
+    this.ctx.drawImage(this.image, this.position.x, this.position.y, this.canvasSize.w, this.canvasSize.h + 10);
+    this.ctx.drawImage(this.image, this.position.x + this.canvasSize.w, this.position.y, this.canvasSize.w, this.canvasSize.h + 10);
     this.move()
   }
 

@@ -72,7 +72,6 @@ const game = {
             }
 
             if (this.isCollision()){
-                console.log(this.framesCounter)
                 this.gameOver()
             } 
 

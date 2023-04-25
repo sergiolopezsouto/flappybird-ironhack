@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 100%;
-    border: 5px solid black;
+    border-left: 5px solid black;
     text-align: center;
     background-image: url(../images/drills.jpg);
     background-size: 60%;

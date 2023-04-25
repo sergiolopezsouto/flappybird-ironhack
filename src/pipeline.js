@@ -5,7 +5,7 @@ class Pipeline {
         this.canvasSize = canvasSize
 
         this.pipelineSpecs = {
-            spaceBetween: 400,
+            spaceBetween: 300,
             size: { width: this.canvasSize.w / 10, height: this.randomHeight() },
             pos: { x: this.canvasSize.w, y: this.canvasSize.h - 200 },
             vel: 2.5
@@ -13,7 +13,7 @@ class Pipeline {
     }
 
     randomHeight() {
-        return Math.random() * 500 + 50
+        return Math.random() * 400 + 50
     }
 
     draw() {
