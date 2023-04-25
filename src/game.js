@@ -95,7 +95,7 @@ const game = {
                 if (this.mode === 'medium') {
                     this.mode = 'hard'
                     this.pipeFreq = 150
-                }                
+                }
             }
 
         }, 10)
@@ -166,8 +166,7 @@ const game = {
 
     takePowerup() {
         return this.powerups.some(powerup => {
-            return (
-
+            if (
                 // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerup.powerupSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= powerup.powerupSpecs.pos.x + powerup.powerupSpecs.size.width && 
@@ -175,7 +174,11 @@ const game = {
                 // condicion eje y 
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerup.powerupSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerup.powerupSpecs.pos.y + powerup.powerupSpecs.size.height 
-            )
+            ) {
+                const aux = powerup
+                this.powerups = this.powerups.filter(p => p!== aux)
+                return true
+            }
         })
 
     },
@@ -196,10 +199,23 @@ const game = {
         this.powerdowns = this.powerdowns.filter(powerdown => powerdown.powerdownSpecs.pos.x >= 0 - powerdown.powerdownSpecs.size.width)
     },
 
+    // takePowerdown() {
+    //     return this.powerdowns.some(powerdown => {
+    //         return (
+    //             // condicion eje x
+    //             this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
+    //             this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
+
+    //             // condicion eje y 
+    //             this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
+    //             this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
+    //         )
+    //     })
+    // },    
+    
     takePowerdown() {
         return this.powerdowns.some(powerdown => {
-            return (
-
+            if (
                 // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
@@ -207,7 +223,12 @@ const game = {
                 // condicion eje y 
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
-            )
+            ) { 
+                const aux = powerdown
+                this.powerdowns = this.powerdowns.filter(p => p!==aux)
+                return true 
+            }    
+  
         })
     },
 
@@ -232,12 +253,6 @@ const game = {
         })
 
     },
-
-   
-    
-
-    
-    
 
     gameOver() {
         clearInterval(this.interval)
