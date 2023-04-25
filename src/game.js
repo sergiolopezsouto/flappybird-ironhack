@@ -57,7 +57,7 @@ const game = {
             this.drawAll()
 
             
-            if (this.onGame && this.framesCounter > 5) {
+            if (this.onGame) {
                 this.drawPipelines()
                 this.createPipelines()
                 this.clearPipelines()
@@ -70,14 +70,19 @@ const game = {
                 this.createPowerups()
                 this.clearPowerups()
                 
-                this.counting()
-                this.addingScore(this.check)
-                console.log(this.counter)
+                // this.counting()
+                // this.addingScore(this.check)
+                // console.log(this.counter)
                 
             }
 
+            console.log(this.bird.birdSpecs.pos.y)
+
             if (this.isCollision()){
                 this.gameOver()
+                console.log(this.bird.birdSpecs.pos.y)
+                console.log(this.pipelines[0].pipelineSpecs.size.height)
+                // console.log(this.pipelines[1].pipelineSpecs.size.height)
             } 
 
             if (this.takePowerup()) {
@@ -225,19 +230,19 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    counting() {
-        this.pipelines.forEach(pipeline => {
-            if (this.bird.birdSpecs.pos.x === pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
-                return true
-            }
-        })
-    },
+    // counting() {
+    //     this.pipelines.forEach(pipeline => {
+    //         if (this.bird.birdSpecs.pos.x === pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
+    //             return true
+    //         }
+    //     })
+    // },
 
-    addingScore(check){
-        if (check) this.counter++ 
-        this.check = false
+    // addingScore(check){
+    //     if (check) this.counter++ 
+    //     this.check = false
 
-    },
+    // },
 
     isCollision() {
         // colision con el suelo
