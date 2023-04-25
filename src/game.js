@@ -13,6 +13,7 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
+    counter: 0,
     mode: 'medium',
     pipeFreq: 200,
     powerups: [],
@@ -67,7 +68,11 @@ const game = {
                 
                 this.drawPowerups()
                 this.createPowerups()
-                this.clearPowerups()                
+                this.clearPowerups()
+                
+                this.counting()
+                this.addingScore(this.check)
+                console.log(this.counter)
                 
             }
 
@@ -197,20 +202,6 @@ const game = {
     clearPowerdowns() {
         this.powerdowns = this.powerdowns.filter(powerdown => powerdown.powerdownSpecs.pos.x >= 0 - powerdown.powerdownSpecs.size.width)
     },
-
-    // takePowerdown() {
-    //     return this.powerdowns.some(powerdown => {
-    //         return (
-    //             // condicion eje x
-    //             this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
-    //             this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
-
-    //             // condicion eje y 
-    //             this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
-    //             this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
-    //         )
-    //     })
-    // },    
     
     takePowerdown() {
         return this.powerdowns.some(powerdown => {
@@ -233,14 +224,28 @@ const game = {
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    isCollision() {
 
+    counting() {
+        this.pipelines.forEach(pipeline => {
+            if (this.bird.birdSpecs.pos.x === pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
+                return true
+            }
+        })
+    },
+
+    addingScore(check){
+        if (check) this.counter++ 
+        this.check = false
+
+    },
+
+    isCollision() {
         // colision con el suelo
         if (this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h > this.canvasSize.h) return true 
 
+        // colision con tuberías 
         return this.pipelines.some(pipeline => {
             return (
-
                 // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width &&

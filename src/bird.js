@@ -10,7 +10,7 @@ class Bird {
             size: { w: 100, h: 75 },
             vel: { x: 2, y: 10 }
         }
-        this.gravity = 2;
+        this.gravity = 1.5;
 
         this.init()
 
@@ -37,8 +37,8 @@ class Bird {
 
     jump() {
         // this.turnVertical()
-        this.birdSpecs.pos.y -= 80
-        this.birdSpecs.vel.y -= 70 
+        // this.birdSpecs.pos.y -= 50
+        this.birdSpecs.vel.y -= 100
 
     }
 
