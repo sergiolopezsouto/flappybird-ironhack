@@ -51,9 +51,7 @@ const game = {
 
         this.interval = setInterval(() => {
 
-            // this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
             this.framesCounter++
-            // console.log(this.framesCounter)
 
             this.clearAll()
             this.drawAll()
@@ -82,7 +80,6 @@ const game = {
                 this.gameOver()
                 console.log(this.bird.birdSpecs.pos.y)
                 console.log(this.pipelines[0].pipelineSpecs.size.height)
-                // console.log(this.pipelines[1].pipelineSpecs.size.height)
             } 
 
             if (this.takePowerup()) {
@@ -137,7 +134,7 @@ const game = {
         this.bird = new Bird(this.ctx, this.canvasSize)
     },
     drawBird() {
-        this.bird?.draw()
+        this.bird?.draw(this.framesCounter)
     },
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
