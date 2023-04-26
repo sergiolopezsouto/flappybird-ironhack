@@ -9,13 +9,15 @@ const game = {
         h: undefined
     },
     framesCounter: 0,
+    framesCounterPipes: 0,
     onGame: false,   //atributo para comprobar que inciamos el juego y que caiga el pajaro
     background: undefined,
     bird: undefined,
     pipelines: [],
+    pipelinesPassed: [],
     counter: 0,
     mode: 'medium',
-    pipeFreq: 225,
+    pipeFreq: 200,
     powerups: [],
     powerdowns: [],
 
@@ -52,6 +54,7 @@ const game = {
         this.interval = setInterval(() => {
 
             this.framesCounter++
+            this.framesCounterPipes++
 
             this.clearAll()
             this.drawAll()
@@ -78,29 +81,27 @@ const game = {
 
             if (this.isCollision()){
                 this.gameOver()
-                console.log(this.bird.birdSpecs.pos.y)
-                console.log(this.pipelines[0].pipelineSpecs.size.height)
             } 
 
             if (this.takePowerup()) {
                 if (this.mode === 'hard') {
+                    this.pipeFreq = 200
                     this.mode = 'medium'
-                    this.pipeFreq = 225
                 }                
                 if (this.mode === 'medium') {
+                    this.pipeFreq = 250
                     this.mode = 'easy'
-                    this.pipeFreq = 275
                 }                
             }
 
             if (this.takePowerdown()) {
                 if (this.mode === 'easy') {
+                    this.pipeFreq = 225 
                     this.mode = 'medium'
-                    this.pipeFreq = 225
                 }                
                 if (this.mode === 'medium') {
+                    this.pipeFreq = 150
                     this.mode = 'hard'
-                    this.pipeFreq = 175
                 }
             }
 
@@ -140,8 +141,10 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPipelines() {
-        if (this.framesCounter % this.pipeFreq === 0) {
+        if (this.framesCounterPipes % this.pipeFreq === 0) {
             this.pipelines.push(new Pipeline(this.ctx, this.canvasSize))
+            this.framesCounterPipes = 0
+            // this.pipelinesPassed.push(new Pipeline(this.ctx, this.canvasSize))
         }
     },
 
@@ -226,9 +229,10 @@ const game = {
 
 
     // counting() {
-    //     this.pipelines.forEach(pipeline => {
-    //         if (this.bird.birdSpecs.pos.x === pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
-    //             return true
+    //     this.pipelinesPassed.forEach((pipeline, i) => {
+    //         if (this.bird.birdSpecs.pos.x > pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
+    //             this.pipelinesPassed = this.pipelinesPassed.filter(p => p!== this.pipelinesPassed[i])
+    //             this.counter++ 
     //         }
     //     })
     // },
