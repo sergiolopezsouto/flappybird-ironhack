@@ -17,12 +17,12 @@ class Powerdown {
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = './images/powerdown.png'
+        this.imageInstance.src = './images/fuego.png'
 
     }
 
     randomAppearance () {
-        return 100 + Math.random() * (this.canvasSize.h - 100) 
+        return Math.random() * (this.canvasSize.h - 100) 
     }
 
     draw() {

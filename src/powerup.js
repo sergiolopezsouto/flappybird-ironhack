@@ -21,7 +21,7 @@ class Powerup {
     }
 
     randomAppearance () {
-        return 100 + Math.random() * (this.canvasSize.h - 100) 
+        return Math.random() * (this.canvasSize.h - 100) 
     }
 
     draw() {
