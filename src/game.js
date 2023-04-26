@@ -89,18 +89,18 @@ const game = {
                     this.mode = 'medium'
                 }                
                 if (this.mode === 'medium') {
-                    this.pipeFreq = 250
+                    this.pipeFreq = 225
                     this.mode = 'easy'
                 }                
             }
 
             if (this.takePowerdown()) {
                 if (this.mode === 'easy') {
-                    this.pipeFreq = 225 
+                    this.pipeFreq = 200 
                     this.mode = 'medium'
                 }                
                 if (this.mode === 'medium') {
-                    this.pipeFreq = 150
+                    this.pipeFreq = 175
                     this.mode = 'hard'
                 }
             }
@@ -159,8 +159,8 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerups() {
-        // const freq = Math.random() * 3000 // para apariciones aleatorias de los powerups
-        if (this.framesCounter % 1153  === 0) {
+        // const powerupFreq = 1000 + Math.random()*500 // para apariciones aleatorias de los powerups
+        if (this.framesCounter % 1155  === 0) { 
             this.powerups.push(new Powerup(this.ctx, this.canvasSize))
         }
     },
@@ -194,7 +194,8 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerdowns() {
-        if (this.framesCounter % 484 === 0) {
+        // const powerdownFreq = 
+        if (this.framesCounter % 735 === 0) {
             this.powerdowns.push(new Powerdown(this.ctx, this.canvasSize))
         }
     },
