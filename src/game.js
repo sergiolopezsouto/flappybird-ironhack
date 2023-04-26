@@ -15,7 +15,7 @@ const game = {
     pipelines: [],
     counter: 0,
     mode: 'medium',
-    pipeFreq: 200,
+    pipeFreq: 225,
     powerups: [],
     powerdowns: [],
 
@@ -51,7 +51,9 @@ const game = {
 
         this.interval = setInterval(() => {
 
-            this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
+            // this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
+            this.framesCounter++
+            // console.log(this.framesCounter)
 
             this.clearAll()
             this.drawAll()
@@ -76,8 +78,6 @@ const game = {
                 
             }
 
-            console.log(this.bird.birdSpecs.pos.y)
-
             if (this.isCollision()){
                 this.gameOver()
                 console.log(this.bird.birdSpecs.pos.y)
@@ -88,22 +88,22 @@ const game = {
             if (this.takePowerup()) {
                 if (this.mode === 'hard') {
                     this.mode = 'medium'
-                    this.pipeFreq = 200
+                    this.pipeFreq = 225
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'easy'
-                    this.pipeFreq = 250
+                    this.pipeFreq = 275
                 }                
             }
 
             if (this.takePowerdown()) {
                 if (this.mode === 'easy') {
                     this.mode = 'medium'
-                    this.pipeFreq = 200
+                    this.pipeFreq = 225
                 }                
                 if (this.mode === 'medium') {
                     this.mode = 'hard'
-                    this.pipeFreq = 150
+                    this.pipeFreq = 175
                 }
             }
 
@@ -160,7 +160,7 @@ const game = {
 
     createPowerups() {
         // const freq = Math.random() * 3000 // para apariciones aleatorias de los powerups
-        if (this.framesCounter % 1600 === 0) {
+        if (this.framesCounter % 1900 === 0) {
             this.powerups.push(new Powerup(this.ctx, this.canvasSize))
         }
     },
@@ -195,7 +195,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerdowns() {
-        if (this.framesCounter % 1300 === 0) {
+        if (this.framesCounter % 1000 === 0) {
             this.powerdowns.push(new Powerdown(this.ctx, this.canvasSize))
         }
     },
@@ -265,6 +265,7 @@ const game = {
 
     gameOver() {
         clearInterval(this.interval)
+        this.framesCounter = 0
     }
 
 }

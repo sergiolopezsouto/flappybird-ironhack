@@ -22,10 +22,7 @@ class Bird {
     }
 
     draw() {
-
-        // this.ctx.fillStyle = 'yellow'
-        // this.ctx.fillRect(this.birdSpecs.pos.x , this.birdSpecs.pos.y , this.birdSpecs.size.w , this.birdSpecs.size.h)
-
+        
         this.ctx.drawImage(
             this.imageInstance,
             this.birdSpecs.pos.x,
