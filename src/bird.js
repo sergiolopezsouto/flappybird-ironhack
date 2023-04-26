@@ -18,12 +18,11 @@ class Bird {
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = './images/bird-sprite.png'
+        this.imageInstance.src = './images/sprite-bird.png'
         this.imageInstance.frames = 4
         this.imageInstance.framesIndex = 0
     }
 
-    // draw() {
     draw(framesCounter) {
         
         this.ctx.drawImage(
@@ -54,7 +53,6 @@ class Bird {
         }
 
     }
-
 
     jump() {
         this.birdSpecs.vel.y = 5

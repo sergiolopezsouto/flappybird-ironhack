@@ -17,8 +17,7 @@ class Powerdown {
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = './images/fuego.png'
-
+        this.imageInstance.src = './images/powerdown.png'
     }
 
     randomAppearance () {
@@ -34,9 +33,6 @@ class Powerdown {
             this.powerdownSpecs.size.width,
             this.powerdownSpecs.size.height
         )
-
-        // this.ctx.fillStyle = 'red'
-        // this.ctx.fillRect(this.powerdownSpecs.pos.x, this.powerdownSpecs.pos.y, this.powerdownSpecs.size.width, this.powerdownSpecs.size.height)
 
         this.move()
 

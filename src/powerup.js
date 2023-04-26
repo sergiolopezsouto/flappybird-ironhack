@@ -33,9 +33,6 @@ class Powerup {
             this.powerupSpecs.size.width,
             this.powerupSpecs.size.height
         )
-
-        // this.ctx.fillStyle = 'blue'
-        // this.ctx.fillRect(this.powerupSpecs.pos.x, this.powerupSpecs.pos.y, this.powerupSpecs.size.width, this.powerupSpecs.size.height)
         
         this.move()
 

@@ -157,7 +157,7 @@ const game = {
 
     createPowerups() {
         // const freq = Math.random() * 3000 // para apariciones aleatorias de los powerups
-        if (this.framesCounter % 1900 === 0) {
+        if (this.framesCounter % 1153  === 0) {
             this.powerups.push(new Powerup(this.ctx, this.canvasSize))
         }
     },
@@ -171,7 +171,7 @@ const game = {
     },
 
     takePowerup() {
-        return this.powerups.some(powerup => {
+        return this.powerups.some((powerup, i) => {
             if (
                 // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerup.powerupSpecs.pos.x && 
@@ -181,8 +181,7 @@ const game = {
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerup.powerupSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerup.powerupSpecs.pos.y + powerup.powerupSpecs.size.height 
             ) {
-                const aux = powerup
-                this.powerups = this.powerups.filter(p => p!== aux)
+                this.powerups = this.powerups.filter(p => p!== this.powerups[i])
                 return true
             }
         })
@@ -192,7 +191,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerdowns() {
-        if (this.framesCounter % 1000 === 0) {
+        if (this.framesCounter % 484 === 0) {
             this.powerdowns.push(new Powerdown(this.ctx, this.canvasSize))
         }
     },
@@ -206,7 +205,7 @@ const game = {
     },
     
     takePowerdown() {
-        return this.powerdowns.some(powerdown => {
+        return this.powerdowns.some((powerdown, i) => {
             if (
                 // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
@@ -216,8 +215,7 @@ const game = {
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
             ) { 
-                const aux = powerdown
-                this.powerdowns = this.powerdowns.filter(p => p!==aux)
+                this.powerdowns = this.powerdowns.filter(p => p!==this.powerdowns[i])
                 return true 
             }    
   
