@@ -6,22 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Bird</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap');
     </style>
-
     <link rel="stylesheet" href="./css/stylesheet.css">
 </head>
 
 <body>
+    <audio id="sound" autoplay>
+        <source src="./sounds/cumbia.mp3" type="audio/mpeg">
+    </audio>
 
     <canvas class="myCanvas" id="myCanvas"></canvas>
+
     <div class="container">
         <h1>Flappy Hacker</h1>
-        <h2>Press SPACE to Start game</h2>
-        <div>
-            <h1> Score </h1>
-            <h1 id="score"> 0 </h1>
+        <h2 class="press-space">Press SPACE to Start game</h2>
+        <div id="score-container" class="score-container hidden ">
+            <h3>Score</h3>
+            <p class="score" id="score">0</p>
+        </div>
+        <div class="no-score hidden">
+            <h3>Vaya! no as superado ningun record merluzo!</h3>
+        </div>
+        <div id="form-container" class="hidden">
+            <form class=" new-score-cont">
+                <p>Conseguiste un nuevo record de
+                    <a id="record"></a> puntos introduce tu nick para entrar al muro de la fama
+                </p>
+                <input id="input" placeholder="Nombre" type="text">
+                <a onclick="sendForm()" href="#">
+                    <p class="btn">Enviar</p>
+                </a>
+            </form>
+
+        </div>
+        <div class="hidden rank-container">
+            <h3>Lista de ranking</h3>
+            <ul class="list">
+
+            </ul>
         </div>
         <footer>
             <p>Creado por Manuel y Sergio</p>

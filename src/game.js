@@ -23,7 +23,7 @@ const game = {
     countingCheck: false,
     counterRange: 1,
     counterPipes: 0,
-    score: 0,
+    counter: 0,
     
     init() {
         this.setContext()
@@ -66,8 +66,16 @@ const game = {
             
             if (this.onGame) {
 
-                let showScore = document.querySelector('#score')
-                showScore.innerText = this.score
+                // let showScore = document.querySelector('#score')
+                // showScore.innerText = this.score
+                let sound = document.querySelector('#sound');
+                sound.play()
+                let pressSpace = document.querySelector('.press-space')
+                pressSpace.classList.add('hidden')
+                let scoreContainer = document.querySelector('#score-container')
+                scoreContainer.classList.remove('hidden')
+                let score = document.querySelector('#score')
+                score.textContent = this.counter
 
                 this.drawPipelines()
                 this.createPipelines()
@@ -84,7 +92,7 @@ const game = {
                 // calculate score 
                 this.counting()
                 if (this.countingCheck) this.counterPipes++
-                this.score = Math.ceil(this.counterPipes/4) // divide entre 4 por la orquilla de la funcion counting
+                this.counter = Math.ceil(this.counterPipes/4) // divide entre 4 por la orquilla de la funcion counting
                 this.countingCheck = false
             
             }
@@ -270,6 +278,33 @@ const game = {
     gameOver() {
         clearInterval(this.interval)
         this.framesCounter = 0
+
+        let scoreContainer = document.querySelector('#score-container')
+        scoreContainer.classList.add('hidden')
+        if (this.onGame) {
+            let pressSpace = document.querySelector('.press-space')
+            pressSpace.classList.remove('hidden')
+        }
+        const hallOfFame = localStorage.getItem('record-list') //obtenemos la lista del LS
+        const hallOfFameList = hallOfFame ? JSON.parse(hallOfFame) : [] // comprueba si la tenemos y la parsea, sino crea un array vacia
+        const isHallOfFameScore = hallOfFameList.some(score => score.score < this.counter) //esta constante devuelte true si algun score e la lista es menor que el actual 
+        if (!isHallOfFameScore) { // si no es apto para el hallofFame
+            let noScore = document.querySelector('.no-score')
+            noScore.classList.toggle('hidden') // aparece el div de no apto
+            return
+
+        }
+        let form = document.querySelector('#form-container')
+
+        form.classList.toggle('hidden')
+        if (!form.classList.contains('hidden')) {
+            let pressSpace = document.querySelector('.press-space')
+            pressSpace.classList.toggle('hidden')
+            let record = document.querySelector('#record')
+            record.innerText = this.counter
+
+        }
+
     }
 
 }

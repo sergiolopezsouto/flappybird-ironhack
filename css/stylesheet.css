@@ -12,7 +12,7 @@ body {
     width: 100%;
     border-left: 5px solid black;
     text-align: center;
-    background-image: url(../images/drills.jpg);
+    background-image: url(../images/fondo.jpeg);
     background-size: 60%;
     display: flex;
     flex-direction: column;
@@ -41,6 +41,96 @@ h2 {
 
 }
 
+footer p {
+    font-size: 1.7em;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}
+
+.score-container {
+    font-size: 4em;
+    margin: 20px;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}
+
+.score {
+    font-size: 1.2em;
+}
+
+.hidden {
+    display: none;
+}
+
+.new-score-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-score-cont p {
+    font-size: 1.9em;
+    -webkit-text-stroke: 2px black;
+    color: white;
+
+}
+
+.new-score-cont input {
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+    margin: 15px auto;
+    background-color: none;
+    font-size: 1.3em;
+    outline: none;
+    border-radius: 5px;
+}
+
+.new-score-cont a {
+    text-decoration: none;
+    font-size: 1.1em;
+    width: 100px;
+    margin: 0 auto;
+
+}
+
+.btn {
+    border: 2px black solid;
+    background-color: #10dd01;
+    color: white;
+    margin: 15px auto;
+    padding: 10px;
+    width: 90px;
+    border-radius: 5px;
+    display: block;
+}
+
+.btn:hover {
+    background-color: #63a106;
+    scale: 95%;
+}
+
+.rank-container ul li {
+    list-style: decimal-leading-zero;
+}
+
+.rank-container {
+    font-size: 3em;
+    margin: 25px auto;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}
+
+.rank-container h3 {
+    text-decoration: dashed;
+}
+
+.no-score {
+    font-size: 1.9em;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}
+
 
 
 
@@ -58,8 +148,3 @@ h2 {
         opacity: 1.0;
     }
 }
-
-
-
-
-footer {}
