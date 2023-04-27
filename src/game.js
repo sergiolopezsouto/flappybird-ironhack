@@ -14,15 +14,17 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
-    // pipelinesPassed: [],
-    countingCheck: false,
-    counterPipes: 0,
-    score: 0,
     mode: 'medium',
     pipeFreq: 200,
     powerups: [],
     powerdowns: [],
-
+    
+    //counting
+    countingCheck: false,
+    counterRange: 1,
+    counterPipes: 0,
+    score: 0,
+    
     init() {
         this.setContext()
         this.setDimensions()
@@ -63,6 +65,10 @@ const game = {
 
             
             if (this.onGame) {
+
+                let showScore = document.querySelector('#score')
+                showScore.innerText = this.score
+
                 this.drawPipelines()
                 this.createPipelines()
                 this.clearPipelines()
@@ -76,10 +82,11 @@ const game = {
                 this.clearPowerups()
                 
                 // calculate score 
-                this.counting() 
-                if (this.countingCheck) this.counterPipes++  
-                this.score = Math.ceil(this.counterPipes/74)
-                this.countingCheck = false                
+                this.counting()
+                if (this.countingCheck) this.counterPipes++
+                this.score = Math.ceil(this.counterPipes/4) // divide entre 4 por la orquilla de la funcion counting
+                this.countingCheck = false
+            
             }
 
             if (this.isCollision()){
@@ -147,7 +154,6 @@ const game = {
         if (this.framesCounterPipes % this.pipeFreq === 0) {
             this.pipelines.push(new Pipeline(this.ctx, this.canvasSize))
             this.framesCounterPipes = 0
-            // this.pipelinesPassed.push(new Pipeline(this.ctx, this.canvasSize))
         }
     },
 
@@ -233,8 +239,10 @@ const game = {
 
     counting() {
         this.pipelines.forEach((pipeline) => {
-            // console.log(this.bird.birdSpecs.pos.x , pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width)
-            if (this.bird.birdSpecs.pos.x > pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) { 
+            // creamos la condicicion con una orquilla de 10 para que no haga el counter++ hasta que desaparezca la tuberia 
+            if (
+                this.bird.birdSpecs.pos.x > pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width &&
+                this.bird.birdSpecs.pos.x < pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width + 10) { 
                 this.countingCheck = true 
             }
         })
