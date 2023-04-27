@@ -276,34 +276,39 @@ const game = {
     },
 
     gameOver() {
+
         clearInterval(this.interval)
         this.framesCounter = 0
 
-        let scoreContainer = document.querySelector('#score-container')
-        scoreContainer.classList.add('hidden')
+        let sound = document.querySelector('#sound');
+        sound.pause()
+
+        // let scoreContainer = document.querySelector('#score-container')
+        // scoreContainer.classList.add('hidden')
         if (this.onGame) {
             let pressSpace = document.querySelector('.press-space')
-            pressSpace.classList.remove('hidden')
+            pressSpace.classList.add('hidden')
         }
-        const hallOfFame = localStorage.getItem('record-list') //obtenemos la lista del LS
-        const hallOfFameList = hallOfFame ? JSON.parse(hallOfFame) : [] // comprueba si la tenemos y la parsea, sino crea un array vacia
-        const isHallOfFameScore = hallOfFameList.some(score => score.score < this.counter) //esta constante devuelte true si algun score e la lista es menor que el actual 
-        if (!isHallOfFameScore) { // si no es apto para el hallofFame
-            let noScore = document.querySelector('.no-score')
-            noScore.classList.toggle('hidden') // aparece el div de no apto
-            return
 
-        }
-        let form = document.querySelector('#form-container')
+        // const hallOfFame = localStorage.getItem('record-list') //obtenemos la lista del LS
+        // const hallOfFameList = hallOfFame ? JSON.parse(hallOfFame) : [] // comprueba si la tenemos y la parsea, sino crea un array vacia
+        // const isHallOfFameScore = hallOfFameList.some(score => score.score < this.counter) //esta constante devuelte true si algun score e la lista es menor que el actual 
+        // if (!isHallOfFameScore) { // si no es apto para el hallofFame
+        //     let noScore = document.querySelector('.no-score')
+        //     noScore.classList.toggle('hidden') // aparece el div de no apto
+        //     return
 
-        form.classList.toggle('hidden')
-        if (!form.classList.contains('hidden')) {
-            let pressSpace = document.querySelector('.press-space')
-            pressSpace.classList.toggle('hidden')
-            let record = document.querySelector('#record')
-            record.innerText = this.counter
+        // }
+        // let form = document.querySelector('#form-container')
 
-        }
+        // form.classList.toggle('hidden')
+        // if (!form.classList.contains('hidden')) {
+        //     let pressSpace = document.querySelector('.press-space')
+        //     pressSpace.classList.toggle('hidden')
+        //     let record = document.querySelector('#record')
+        //     record.innerText = this.counter
+
+        // }
 
     }
 
