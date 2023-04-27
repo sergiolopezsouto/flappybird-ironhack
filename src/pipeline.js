@@ -18,7 +18,7 @@ class Pipeline {
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = './images/ice.webp'
+        this.imageInstance.src = './images/ice-pipes.webp'
     }
 
 
@@ -28,7 +28,7 @@ class Pipeline {
  
     draw() {
 
-        // esta siempre empieza en el techo 
+        // the pipe above 
         this.ctx.drawImage(
             this.imageInstance,
             this.pipelineSpecs.pos.x, 
@@ -37,7 +37,7 @@ class Pipeline {
             this.pipelineSpecs.size.height
         )
 
-        // esta siempre empieza en el suelo 
+        // the pipe blow 
         this.ctx.drawImage(
             this.imageInstance,
             this.pipelineSpecs.pos.x, 

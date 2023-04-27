@@ -14,8 +14,10 @@ const game = {
     background: undefined,
     bird: undefined,
     pipelines: [],
-    pipelinesPassed: [],
-    counter: 0,
+    // pipelinesPassed: [],
+    countingCheck: false,
+    counterPipes: 0,
+    score: 0,
     mode: 'medium',
     pipeFreq: 200,
     powerups: [],
@@ -73,10 +75,11 @@ const game = {
                 this.createPowerups()
                 this.clearPowerups()
                 
-                // this.counting()
-                // this.addingScore(this.check)
-                // console.log(this.counter)
-                
+                // calculate score 
+                this.counting() 
+                if (this.countingCheck) this.counterPipes++  
+                this.score = Math.ceil(this.counterPipes/74)
+                this.countingCheck = false                
             }
 
             if (this.isCollision()){
@@ -194,7 +197,7 @@ const game = {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     createPowerdowns() {
-        // const powerdownFreq = 
+        // const powerdownFreq = 1000 + Math.random()*500 // para apariciones aleatorias de los powerups
         if (this.framesCounter % 735 === 0) {
             this.powerdowns.push(new Powerdown(this.ctx, this.canvasSize))
         }
@@ -211,11 +214,11 @@ const game = {
     takePowerdown() {
         return this.powerdowns.some((powerdown, i) => {
             if (
-                // condicion eje x
+                // x axis condition
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
 
-                // condicion eje y 
+                // y axis condition 
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
             ) { 
@@ -228,34 +231,27 @@ const game = {
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    // counting() {
-    //     this.pipelinesPassed.forEach((pipeline, i) => {
-    //         if (this.bird.birdSpecs.pos.x > pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) {
-    //             this.pipelinesPassed = this.pipelinesPassed.filter(p => p!== this.pipelinesPassed[i])
-    //             this.counter++ 
-    //         }
-    //     })
-    // },
-
-    // addingScore(check){
-    //     if (check) this.counter++ 
-    //     this.check = false
-
-    // },
+    counting() {
+        this.pipelines.forEach((pipeline) => {
+            // console.log(this.bird.birdSpecs.pos.x , pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width)
+            if (this.bird.birdSpecs.pos.x > pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width) { 
+                this.countingCheck = true 
+            }
+        })
+    },
 
     isCollision() {
-        // colision con el suelo
+        // floor collision
         if (this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h > this.canvasSize.h) return true 
 
-        // colision con tuberías 
+        // pipes collision
         return this.pipelines.some(pipeline => {
             return (
-                // condicion eje x
+                // x axis condition
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width &&
 
-                // condicion eje y (espacio entre tuberias)
+                // y axis condition
                 (this.bird.birdSpecs.pos.y <= pipeline.pipelineSpecs.size.height || 
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.size.height + pipeline.pipelineSpecs.spaceBetween)
             )
