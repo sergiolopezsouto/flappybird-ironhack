@@ -16,11 +16,10 @@ class Pipeline {
 
     }
 
-    init() {
+    init() { 
         this.imageInstance = new Image()
-        this.imageInstance.src = './images/ice-pipes.webp'
+        this.imageInstance.src = './images/pipes.webp'
     }
-
 
     randomHeight() {
         return Math.random() * 400 + 50 
@@ -37,7 +36,7 @@ class Pipeline {
             this.pipelineSpecs.size.height
         )
 
-        // the pipe blow 
+        // the pipe below 
         this.ctx.drawImage(
             this.imageInstance,
             this.pipelineSpecs.pos.x, 

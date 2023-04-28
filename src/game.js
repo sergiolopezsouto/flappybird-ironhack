@@ -10,7 +10,7 @@ const game = {
     },
     framesCounter: 0,
     framesCounterPipes: 0,
-    onGame: false,   //atributo para comprobar que inciamos el juego y que caiga el pajaro
+    onGame: false, 
     background: undefined,
     bird: undefined,
     pipelines: [],
@@ -66,8 +66,6 @@ const game = {
             
             if (this.onGame) {
 
-                // let showScore = document.querySelector('#score')
-                // showScore.innerText = this.score
                 let sound = document.querySelector('#sound');
                 sound.play()
                 let pressSpace = document.querySelector('.press-space')
@@ -228,11 +226,11 @@ const game = {
     takePowerdown() {
         return this.powerdowns.some((powerdown, i) => {
             if (
-                // x axis condition
+                // condicion eje x 
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= powerdown.powerdownSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= powerdown.powerdownSpecs.pos.x + powerdown.powerdownSpecs.size.width && 
 
-                // y axis condition 
+                // condicion eje y  
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= powerdown.powerdownSpecs.pos.y && 
                 this.bird.birdSpecs.pos.y <= powerdown.powerdownSpecs.pos.y + powerdown.powerdownSpecs.size.height 
             ) { 
@@ -263,11 +261,11 @@ const game = {
         // pipes collision
         return this.pipelines.some(pipeline => {
             return (
-                // x axis condition
+                // condicion eje x
                 this.bird.birdSpecs.pos.x + this.bird.birdSpecs.size.w >= pipeline.pipelineSpecs.pos.x && 
                 this.bird.birdSpecs.pos.x <= pipeline.pipelineSpecs.pos.x + pipeline.pipelineSpecs.size.width &&
 
-                // y axis condition
+                // condicion eje y
                 (this.bird.birdSpecs.pos.y <= pipeline.pipelineSpecs.size.height || 
                 this.bird.birdSpecs.pos.y + this.bird.birdSpecs.size.h >= pipeline.pipelineSpecs.size.height + pipeline.pipelineSpecs.spaceBetween)
             )
@@ -287,32 +285,10 @@ const game = {
         let btn = document.querySelector('#btn')
         btn.classList.toggle('hidden2')
 
-        // let scoreContainer = document.querySelector('#score-container')
-        // scoreContainer.classList.add('hidden')
         if (this.onGame) {
             let pressSpace = document.querySelector('.press-space')
             pressSpace.classList.add('hidden')
         }
-
-        // const hallOfFame = localStorage.getItem('record-list') //obtenemos la lista del LS
-        // const hallOfFameList = hallOfFame ? JSON.parse(hallOfFame) : [] // comprueba si la tenemos y la parsea, sino crea un array vacia
-        // const isHallOfFameScore = hallOfFameList.some(score => score.score < this.counter) //esta constante devuelte true si algun score e la lista es menor que el actual 
-        // if (!isHallOfFameScore) { // si no es apto para el hallofFame
-        //     let noScore = document.querySelector('.no-score')
-        //     noScore.classList.toggle('hidden') // aparece el div de no apto
-        //     return
-
-        // }
-        // let form = document.querySelector('#form-container')
-
-        // form.classList.toggle('hidden')
-        // if (!form.classList.contains('hidden')) {
-        //     let pressSpace = document.querySelector('.press-space')
-        //     pressSpace.classList.toggle('hidden')
-        //     let record = document.querySelector('#record')
-        //     record.innerText = this.counter
-
-        // }
 
     }
 
