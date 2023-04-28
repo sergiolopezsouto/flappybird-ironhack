@@ -280,6 +280,8 @@ const game = {
         clearInterval(this.interval)
         this.framesCounter = 0
 
+        let soundCrash = document.querySelector('#sound-crash')
+        soundCrash.play()
         let sound = document.querySelector('#sound');
         sound.pause()
         let btn = document.querySelector('#btn')
