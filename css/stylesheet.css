@@ -17,14 +17,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 40px;
 }
 
 h1 {
     font-size: 4.5em;
-    -webkit-text-stroke: 2px lightblue;
+    -webkit-text-stroke: 2px black;
     color: white;
     margin: 30px auto;
-    padding: 30px;
+
 
 
 }
@@ -49,10 +50,12 @@ footer p {
 }
 
 .score-container {
-    font-size: 4em;
+    font-size: 3.6em;
     margin: 20px;
     -webkit-text-stroke: 2px black;
     color: white;
+
+
 }
 
 .score {
@@ -61,6 +64,10 @@ footer p {
 
 .hidden {
     display: none;
+}
+
+.hidden2 {
+    visibility: hidden;
 }
 
 .new-score-cont {
@@ -99,12 +106,22 @@ footer p {
     border: 2px black solid;
     background-color: #10dd01;
     color: white;
-    margin: 15px auto;
+    margin: 0 auto;
     padding: 10px;
-    width: 90px;
+    width: 120px;
+    height: 40px;
     border-radius: 5px;
     display: block;
+    font-size: 2em;
+    text-decoration: none;
 }
+
+a {
+    text-decoration: none;
+    -webkit-text-stroke: 2px black;
+}
+
+
 
 .btn:hover {
     background-color: #63a106;

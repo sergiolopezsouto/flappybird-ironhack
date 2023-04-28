@@ -282,6 +282,8 @@ const game = {
 
         let sound = document.querySelector('#sound');
         sound.pause()
+        let btn = document.querySelector('#btn')
+        btn.classList.toggle('hidden2')
 
         // let scoreContainer = document.querySelector('#score-container')
         // scoreContainer.classList.add('hidden')
